@@ -6,9 +6,9 @@ var _alunoController = require('../controllers/alunoController'); var _alunoCont
 
 // Rotas principais
 const router = new (0, _express.Router)();
-router.get('/', _middleware2.default, _alunoController2.default.index);
-router.post('/',  _middleware2.default, _alunoController2.default.store);
-router.put('/:id',  _middleware2.default, _alunoController2.default.update);
+router.get('/', _alunoController2.default.index);
+router.post('/', _alunoController2.default.store);
+router.put('/:id', _alunoController2.default.update);
 router.get('/:id', _alunoController2.default.show);
 router.post('/:id', _alunoController2.default.delete);
 

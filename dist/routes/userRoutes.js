@@ -6,10 +6,10 @@ var _middleware = require('../middlewares/middleware'); var _middleware2 = _inte
 
 // Rotas principais
 const router = new (0, _express.Router)();
-router.get('/', _middleware2.default, _userController2.default.index);
+router.get('/', _userController2.default.index);
 router.post('/', _userController2.default.store);
 router.get('/:id', _userController2.default.show);
-router.put('/', _middleware2.default, _userController2.default.update);
+router.put('/', _userController2.default.update);
 router.delete('/:id', _userController2.default.delete);
 // Rotas para contatos
 exports. default = router;
