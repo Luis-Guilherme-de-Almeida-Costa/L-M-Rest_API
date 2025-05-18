@@ -9,10 +9,7 @@ import { resolve } from 'path';
 dotenv.config();
 // eslint-disable-next-line import/extensions
 import homeRoutes from './routes/homeRoutes';
-import userRoutes from './routes/userRoutes';
 import tokenRoutes from './routes/tokenRoutes';
-import alunoRoutes from './routes/alunoRoutes';
-import fotoRoutes from './routes/fotoRouter';
 import './database/index';
 
 const whiteList = ['http://192.168.1.13:80', 'http://localhost:3002', 'http://localhost:3000'];
@@ -44,10 +41,7 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
-    this.app.use('/users/', userRoutes);
     this.app.use('/tokens/', tokenRoutes);
-    this.app.use('/alunos/', alunoRoutes);
-    this.app.use('/fotos/', fotoRoutes);
   }
 }
 
