@@ -1,9 +1,11 @@
-import Aluno from '../models/aluno';
+import Pessoas from "../models/pessoas";
 
 class HomeController {
-  async index(req, res) {
-    res.json('index');
-  }
+    async index(req, res) {
+        const pessoa = await Pessoas.findAll();
+
+        res.json(pessoa); 
+    }
 }
 
-export default new HomeController();
+export default new Pessoa();
