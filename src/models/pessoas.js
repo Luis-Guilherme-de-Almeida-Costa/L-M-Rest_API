@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import bcryptjs from "bcryptjs";
 
 export default class Pessoas extends Model {
   static init(sequelize) {
@@ -12,25 +13,44 @@ export default class Pessoas extends Model {
         },
         nome: {
           type: Sequelize.STRING(55),
-          allowNull: true
+          allowNull: false,
+          validate: {
+            len: {
+              args: [3, 55],
+              msg: "Campo nome deve ter entre 3 e 55 caracteres!",
+            }
+          }
         },
         email: {
           type: Sequelize.STRING(65),
-          allowNull: true,
-          unique: "email"
+          allowNull: false,
+          unique: {
+            msg: "Email já existe"
+          },
+          validate: {
+            isEmail: {
+              msg: "E-mail inválido."
+            }
+          }
         },
         cpf: {
           type: Sequelize.STRING(15),
-          allowNull: true,
+          allowNull: false,
           unique: "cpf"
         },
         situacao: {
           type: Sequelize.CHAR(2),
-          allowNull: true
+          allowNull: false,
         },
         senha: {
-          type: Sequelize.STRING(255),
-          allowNull: true
+          type: Sequelize.STRING(255), // deve ser alterado para virtual
+          allowNull: false,
+          validate: {
+            len: {
+              args: [8, 255],
+              msg: "A senha deve ter entre 8 e 255 caracteres!"
+            }
+          }
         }
       },
       {
@@ -38,12 +58,22 @@ export default class Pessoas extends Model {
         tableName: 'pessoas',
         timestamps: false,
       }
-    );
+    );  
+
+    this.addHook('beforeSave', async pessoa => {
+      if(pessoa.senha) {
+        pessoa.password_hash = await bcryptjs.hash(pessoa.senha, 8)
+      }
+    })
 
     return this;
   }
 
   static associate(models) {
     this.hasMany(models.LivrosFavoritos, { foreignKey: 'id_pessoa' });
+  }
+
+  isValidPassword(password) {
+    return bcryptjs.compare(password, this.password_hash);
   }
 }
