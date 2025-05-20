@@ -9,10 +9,7 @@ var _path = require('path');
 _dotenv2.default.config();
 // eslint-disable-next-line import/extensions
 var _homeRoutes = require('./routes/homeRoutes'); var _homeRoutes2 = _interopRequireDefault(_homeRoutes);
-var _userRoutes = require('./routes/userRoutes'); var _userRoutes2 = _interopRequireDefault(_userRoutes);
 var _tokenRoutes = require('./routes/tokenRoutes'); var _tokenRoutes2 = _interopRequireDefault(_tokenRoutes);
-var _alunoRoutes = require('./routes/alunoRoutes'); var _alunoRoutes2 = _interopRequireDefault(_alunoRoutes);
-var _fotoRouter = require('./routes/fotoRouter'); var _fotoRouter2 = _interopRequireDefault(_fotoRouter);
 require('./database/index');
 
 const whiteList = ['http://192.168.1.13:80', 'http://localhost:3002', 'http://localhost:3000'];
@@ -44,10 +41,7 @@ class App {
 
   routes() {
     this.app.use('/', _homeRoutes2.default);
-    this.app.use('/users/', _userRoutes2.default);
     this.app.use('/tokens/', _tokenRoutes2.default);
-    this.app.use('/alunos/', _alunoRoutes2.default);
-    this.app.use('/fotos/', _fotoRouter2.default);
   }
 }
 
