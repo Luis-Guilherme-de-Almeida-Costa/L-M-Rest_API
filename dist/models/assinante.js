@@ -23,28 +23,12 @@
         sequelize,
         tableName: 'assinante',
         timestamps: false,
-        indexes: [
-          {
-            name: 'PRIMARY',
-            unique: true,
-            using: 'BTREE',
-            fields: [{ name: 'id_assinante' }]
-          },
-          {
-            name: 'id_pessoa',
-            using: 'BTREE',
-            fields: [{ name: 'id_pessoa' }]
-          }
-        ]
       }
     );
     return this;
   }
 
   static associate(models) {
-    this.belongsTo(models.Pessoas, {
-      foreignKey: 'id_pessoa',
-      as: 'pessoa'
-    });
+    this.belongsTo(models.Pessoas, { foreignKey: 'id_pessoa' });
   }
 } exports.default = Assinante;

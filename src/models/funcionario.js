@@ -24,34 +24,12 @@ export default class Funcionario extends Model {
         sequelize,
         tableName: 'funcionario',
         timestamps: false,
-        indexes: [
-          {
-            name: 'PRIMARY',
-            unique: true,
-            using: 'BTREE',
-            fields: [{ name: 'id_funcionario' }]
-          },
-          {
-            name: 'matricula',
-            unique: true,
-            using: 'BTREE',
-            fields: [{ name: 'matricula' }]
-          },
-          {
-            name: 'id_pessoa',
-            using: 'BTREE',
-            fields: [{ name: 'id_pessoa' }]
-          }
-        ]
       }
     );
     return this;
   }
 
   static associate(models) {
-    this.belongsTo(models.Pessoas, {
-      foreignKey: 'id_pessoa',
-      as: 'pessoa'
-    });
+    this.belongsTo(models.Pessoas, { foreignKey: 'id_pessoa' });
   }
 }

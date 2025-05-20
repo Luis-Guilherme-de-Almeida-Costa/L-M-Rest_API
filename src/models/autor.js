@@ -23,33 +23,14 @@ export default class Autor extends Model {
         sequelize,
         tableName: 'autor',
         timestamps: false,
-        indexes: [
-          {
-            name: 'PRIMARY',
-            unique: true,
-            using: 'BTREE',
-            fields: [{ name: 'id_autor' }]
-          },
-          {
-            name: 'id_pessoa',
-            using: 'BTREE',
-            fields: [{ name: 'id_pessoa' }]
-          }
-        ]
       }
     );
     return this;
   }
 
   static associate(models) {
-    this.belongsTo(models.Pessoas, {
-      foreignKey: 'id_pessoa',
-      as: 'pessoa'
-    });
+    this.belongsTo(models.Pessoas, { foreignKey: 'id_pessoa' });
 
-    this.hasMany(models.LivrosEnviados, {
-      foreignKey: 'id_autor',
-      as: 'livrosEnviados'
-    });
+    this.hasMany(models.LivrosEnviados, { foreignKey: 'id_autor' });
   }
 }

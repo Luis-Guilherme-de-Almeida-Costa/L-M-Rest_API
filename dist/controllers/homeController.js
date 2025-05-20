@@ -7,4 +7,4 @@ class HomeController {
     }
 }
 
-exports. default = new Pessoa();
+exports. default = new HomeController();

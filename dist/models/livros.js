@@ -43,25 +43,12 @@
         sequelize,
         tableName: 'livros',
         timestamps: false,
-        indexes: [
-          {
-            name: "PRIMARY",
-            unique: true,
-            using: "BTREE",
-            fields: [
-              { name: "id_livro" },
-            ]
-          },
-        ]
       }
     );
     return this;
   }
 
   static associate(models) {
-    this.hasMany(models.LivrosFavoritos, {
-      foreignKey: 'id_livro',
-      as: 'favoritos'
-    });
+    this.hasMany(models.LivrosFavoritos, { foreignKey: 'id_livro' });
   }
 } exports.default = Livros;

@@ -37,32 +37,6 @@ export default class Pessoas extends Model {
         sequelize,
         tableName: 'pessoas',
         timestamps: false,
-        indexes: [
-          {
-            name: "PRIMARY",
-            unique: true,
-            using: "BTREE",
-            fields: [
-              { name: "id_pessoa" },
-            ]
-          },
-          {
-            name: "email",
-            unique: true,
-            using: "BTREE",
-            fields: [
-              { name: "email" },
-            ]
-          },
-          {
-            name: "cpf",
-            unique: true,
-            using: "BTREE",
-            fields: [
-              { name: "cpf" },
-            ]
-          },
-        ]
       }
     );
 
@@ -70,9 +44,6 @@ export default class Pessoas extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.LivrosFavoritos, {
-      foreignKey: 'id_pessoa',
-      as: 'favoritos'
-    });
+    this.hasMany(models.LivrosFavoritos, { foreignKey: 'id_pessoa' });
   }
 }

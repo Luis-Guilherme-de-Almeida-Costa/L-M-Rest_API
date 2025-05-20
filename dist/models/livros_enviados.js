@@ -43,32 +43,12 @@
         sequelize,
         tableName: 'livros_enviados',
         timestamps: false,
-        indexes: [
-          {
-            name: "PRIMARY",
-            unique: true,
-            using: "BTREE",
-            fields: [
-              { name: "id_livro_enviado" },
-            ]
-          },
-          {
-            name: "id_autor",
-            using: "BTREE",
-            fields: [
-              { name: "id_autor" },
-            ]
-          },
-        ]
       }
     );
     return this;
   }
 
   static associate(models) {
-    this.belongsTo(models.Autor, {
-      foreignKey: 'id_autor',
-      as: 'autor'
-    });
+    this.belongsTo(models.Autor, { foreignKey: 'id_autor' });
   }
 } exports.default = LivrosEnviados;
