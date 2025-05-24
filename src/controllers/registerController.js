@@ -15,10 +15,10 @@ class Register {
     async store(req, res) {
         try {
             const pessoa = await Pessoas.create({
-                nome: req.body.nome,
+                nome: req.body.name,
                 email: req.body.email,
                 cpf: req.body.cpf,
-                senha: req.body.senha
+                senha: req.body.password
             }); 
 
             

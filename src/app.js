@@ -10,6 +10,7 @@ dotenv.config();
 // eslint-disable-next-line import/extensions
 import homeRoutes from './routes/homeRoutes';
 import tokenRoutes from './routes/tokenRoutes';
+import loginRoutes from './routes/loginRoutes';
 import './database/index';
 
 const whiteList = ['http://192.168.1.13:80', 'http://localhost:3002', 'http://localhost:3000'];
@@ -42,6 +43,7 @@ class App {
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/tokens/', tokenRoutes);
+    this.app.use('/login/', loginRoutes);
   }
 }
 
