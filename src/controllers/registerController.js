@@ -10,7 +10,6 @@ class Register {
                 cpf: "12345678901",
                 senha: "123123"
             });
-
             res.json(pessoa);
         } catch (error) {
             return res.status(400).json({
