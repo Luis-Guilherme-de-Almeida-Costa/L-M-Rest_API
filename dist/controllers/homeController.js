@@ -2,8 +2,14 @@
 
 class HomeController {
     async index(req, res) {
-        const pessoa = await _pessoas2.default.findAll();
-        res.json(pessoa); 
+        try {
+            const pessoa = await _pessoas2.default.findAll();
+            res.json(pessoa); 
+        } catch (error) {
+            return res.status(400).json({
+                errors: error.errors
+            });
+        }
     }
 }
 

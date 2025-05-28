@@ -9,6 +9,7 @@ var _path = require('path');
 _dotenv2.default.config();
 // eslint-disable-next-line import/extensions
 var _homeRoutes = require('./routes/homeRoutes'); var _homeRoutes2 = _interopRequireDefault(_homeRoutes);
+var _pessoaRoutes = require('./routes/pessoaRoutes'); var _pessoaRoutes2 = _interopRequireDefault(_pessoaRoutes);
 var _tokenRoutes = require('./routes/tokenRoutes'); var _tokenRoutes2 = _interopRequireDefault(_tokenRoutes);
 require('./database/index');
 
@@ -41,6 +42,7 @@ class App {
 
   routes() {
     this.app.use('/', _homeRoutes2.default);
+    this.app.use('/auth/', _pessoaRoutes2.default);
     this.app.use('/tokens/', _tokenRoutes2.default);
   }
 }

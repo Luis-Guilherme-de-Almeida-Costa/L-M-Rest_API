@@ -8,12 +8,14 @@ class Register {
                 email: "olaluis12@gmail.com",
                 situacao: "A",
                 cpf: "12345678901",
-                senha: "123123"
+                senha: "1231231212"
             });
-            res.json(pessoa);
+            res.json({
+                message: "Registro feito com sucesso!",
+            });
         } catch (error) {
             return res.status(400).json({
-                errors: error.errors.map((err) => err.message)
+                errors: error.errors.map((err) => err.message) 
             });
         }
 

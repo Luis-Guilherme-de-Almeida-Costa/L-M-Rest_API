@@ -37,8 +37,13 @@ export default class Pessoas extends Model {
         },
         cpf: {
           type: Sequelize.STRING(15),
-          allowNull: false,
-          unique: "cpf"
+          unique: "cpf",
+          validate: {
+            len: {
+              args: [11, 11],
+              msg: "O cpf deve possuir 11 caracteres!"
+            }
+          }
         },
         situacao: {
           type: Sequelize.CHAR(2),
@@ -48,12 +53,11 @@ export default class Pessoas extends Model {
 
         senha_hash: {
           type: Sequelize.STRING(255),
-          allowNull: false,
+          defaultValue: '',
         },
 
         senha: {
           type: Sequelize.VIRTUAL(255), // deve ser alterado para virtual
-          allowNull: false,
           validate: {
             len: {
               args: [8, 255],

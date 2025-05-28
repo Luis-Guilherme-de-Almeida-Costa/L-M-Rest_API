@@ -8,12 +8,14 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
         id_pessoa: {
           autoIncrement: true,
           type: _sequelize2.default.INTEGER,
-          allowNull: false,
           primaryKey: true
         },
         nome: {
           type: _sequelize2.default.STRING(55),
           allowNull: false,
+          unique: {
+            msg: "Nome de perfil já foi utilizado."
+          },
           validate: {
             len: {
               args: [3, 55],
@@ -25,7 +27,7 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
           type: _sequelize2.default.STRING(65),
           allowNull: false,
           unique: {
-            msg: "Email já existe"
+            msg: "Email já existe."
           },
           validate: {
             isEmail: {
@@ -35,18 +37,27 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
         },
         cpf: {
           type: _sequelize2.default.STRING(15),
-          allowNull: false,
-          unique: "cpf"
+          unique: "cpf",
+          validate: {
+            len: {
+              args: [11, 11],
+              msg: "O cpf deve possuir 11 caracteres!"
+            }
+          }
         },
         situacao: {
           type: _sequelize2.default.CHAR(2),
           defaultValue: 'A',
           allowNull: false,
         },
+
+        senha_hash: {
+          type: _sequelize2.default.STRING(255),
+          defaultValue: '',
+        },
+
         senha: {
           type: _sequelize2.default.VIRTUAL(255), // deve ser alterado para virtual
-          allowNull: false,
-          defaultValue: '',
           validate: {
             len: {
               args: [8, 255],
