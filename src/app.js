@@ -9,6 +9,7 @@ import { resolve } from 'path';
 dotenv.config();
 // eslint-disable-next-line import/extensions
 import homeRoutes from './routes/homeRoutes';
+import pessoaRoutes from './routes/pessoaRoutes'
 import tokenRoutes from './routes/tokenRoutes';
 import './database/index';
 
@@ -41,6 +42,7 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
+    this.app.use('/auth/', pessoaRoutes);
     this.app.use('/tokens/', tokenRoutes);
   }
 }

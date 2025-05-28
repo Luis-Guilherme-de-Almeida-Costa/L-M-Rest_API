@@ -8,12 +8,14 @@ export default class Pessoas extends Model {
         id_pessoa: {
           autoIncrement: true,
           type: Sequelize.INTEGER,
-          allowNull: false,
           primaryKey: true
         },
         nome: {
           type: Sequelize.STRING(55),
           allowNull: false,
+          unique: {
+            msg: "Nome de perfil já foi utilizado."
+          },
           validate: {
             len: {
               args: [3, 55],
@@ -25,7 +27,7 @@ export default class Pessoas extends Model {
           type: Sequelize.STRING(65),
           allowNull: false,
           unique: {
-            msg: "Email já existe"
+            msg: "Email já existe."
           },
           validate: {
             isEmail: {
@@ -40,10 +42,17 @@ export default class Pessoas extends Model {
         },
         situacao: {
           type: Sequelize.CHAR(2),
+          defaultValue: 'A',
           allowNull: false,
         },
+
+        senha_hash: {
+          type: Sequelize.STRING(255),
+          allowNull: false,
+        },
+
         senha: {
-          type: Sequelize.STRING(255), // deve ser alterado para virtual
+          type: Sequelize.VIRTUAL(255), // deve ser alterado para virtual
           allowNull: false,
           validate: {
             len: {
@@ -62,18 +71,18 @@ export default class Pessoas extends Model {
 
     this.addHook('beforeSave', async pessoa => {
       if(pessoa.senha) {
-        pessoa.password_hash = await bcryptjs.hash(pessoa.senha, 8)
+        pessoa.senha_hash = await bcryptjs.hash(pessoa.senha, 8)
       }
     })
 
     return this;
   }
+  
+  isValidPassword(senha) {
+    return bcryptjs.compare(senha, this.senha_hash);    
+  }
 
   static associate(models) {
     this.hasMany(models.LivrosFavoritos, { foreignKey: 'id_pessoa' });
-  }
-
-  isValidPassword(password) {
-    return bcryptjs.compare(password, this.password_hash);
   }
 }
