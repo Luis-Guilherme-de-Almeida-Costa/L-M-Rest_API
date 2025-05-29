@@ -43,7 +43,6 @@ class App {
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/auth/', pessoaRoutes);
-    this.app.use('/tokens/', tokenRoutes);
   }
 }
 

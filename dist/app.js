@@ -43,7 +43,6 @@ class App {
   routes() {
     this.app.use('/', _homeRoutes2.default);
     this.app.use('/auth/', _pessoaRoutes2.default);
-    this.app.use('/tokens/', _tokenRoutes2.default);
   }
 }
 

@@ -4,13 +4,16 @@ class Register {
     async store(req, res) {
         try {
             const pessoa = await _pessoas2.default.create({
-                nome: "Luis",
-                email: "olaluis12@gmail.com",
+                nome: req.body.nome,
+                email: req.body.email,
                 situacao: "A",
-                cpf: "12345678901",
-                senha: "1231231212"
+                cpf: req.body.cpf,
+                senha: req.body.senha
             });
-            res.json(pessoa);
+
+            res.json({
+                message: "Registro feito com sucesso!",
+            });
         } catch (error) {
             return res.status(400).json({
                 errors: error.errors.map((err) => err.message) 
