@@ -32,6 +32,10 @@ export default class Pessoas extends Model {
           validate: {
             isEmail: {
               msg: "E-mail inválido."
+            },
+            len: {
+              args: [11, 65],
+              msg: "O e-mail deve possuir pelo menos 11 caracteres!"
             }
           }
         },

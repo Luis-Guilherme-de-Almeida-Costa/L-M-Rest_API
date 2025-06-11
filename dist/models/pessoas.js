@@ -32,6 +32,10 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
           validate: {
             isEmail: {
               msg: "E-mail inválido."
+            },
+            len: {
+              args: [11, 65],
+              msg: "O e-mail deve possuir pelo menos 11 caracteres!"
             }
           }
         },
