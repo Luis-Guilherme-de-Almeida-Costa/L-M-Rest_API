@@ -11,7 +11,9 @@ class Login {
               errors: ['Ou seu email, ou sua senha está vazia.']
             })
           }
-
+        
+        
+        
         try {
             const pessoa = await Pessoas.findOne({
                 where: { email }
@@ -37,6 +39,7 @@ class Login {
             
             return res.json({
                 message: "Autênticação feita com sucesso!",
+                email: email,
                 token
             });
 
