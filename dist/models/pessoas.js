@@ -65,7 +65,7 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
           validate: {
             len: {
               args: [8, 255],
-              msg: "A senha deve ter entre 8 e 255 caracteres!"
+              msg: "A senha deve possuir entre 8 e 255 caracteres!"
             }
           }
         }

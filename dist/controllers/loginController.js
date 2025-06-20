@@ -10,9 +10,7 @@ class Login {
             return res.status(401).json({
               errors: ['Ou seu email, ou sua senha está vazia.']
             })
-          }
-        
-        
+        }
         
         try {
             const pessoa = await _pessoas2.default.findOne({
@@ -25,7 +23,7 @@ class Login {
                 })
             }
 
-            const pessoaValida = pessoa.isValidPassword(senha);
+            const pessoaValida = await pessoa.isValidPassword(senha);
 
             if(!pessoaValida) {
                 return res.status(400).json({
