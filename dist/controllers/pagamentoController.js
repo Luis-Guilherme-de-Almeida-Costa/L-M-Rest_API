@@ -1,25 +1,16 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _pessoas = require('../models/pessoas'); var _pessoas2 = _interopRequireDefault(_pessoas);
+var _assinante = require('../models/assinante'); var _assinante2 = _interopRequireDefault(_assinante);
 
-class Register {
+class Pagamento {
     async store(req, res) {
         try {
-            const pessoa = await _pessoas2.default.create({
-                nome: req.body.nome,
-                email: req.body.email,
-                cpf: req.body.cpf,
-                senha: req.body.senha
-            });
-
-            res.json({
-                message: "Registro feito com sucesso!",
-            });
+            
         } catch (error) {
             return res.status(400).json({
                 errors: error.errors.map((err) => err.message) 
             });
         }
-
     }
 }
 
-exports. default = new Register();
+exports. default = new Pagamento();

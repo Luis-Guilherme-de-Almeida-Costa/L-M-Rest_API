@@ -16,6 +16,7 @@
         },
         pagamento: {
           type: _sequelize2.default.STRING(15),
+          defaultValue: 'A',
           allowNull: false
         }
       },

@@ -6,7 +6,6 @@ class Register {
             const pessoa = await Pessoas.create({
                 nome: req.body.nome,
                 email: req.body.email,
-                situacao: "A",
                 cpf: req.body.cpf,
                 senha: req.body.senha
             });

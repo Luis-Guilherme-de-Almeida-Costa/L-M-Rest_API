@@ -16,6 +16,7 @@ export default class Assinante extends Model {
         },
         pagamento: {
           type: Sequelize.STRING(15),
+          defaultValue: 'A',
           allowNull: false
         }
       },
