@@ -38,6 +38,7 @@ class Login {
             return res.json({
                 message: "Autênticação feita com sucesso!",
                 email: email,
+                user: pessoa.nome,
                 token
             });
 

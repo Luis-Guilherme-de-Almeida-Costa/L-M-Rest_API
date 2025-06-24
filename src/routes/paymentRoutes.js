@@ -1,10 +1,13 @@
 // eslint-disable-next-line
 import { Router } from 'express';
-import homeController from '../controllers/perfilController';
+import pagamentoController from '../controllers/pagamentoController';
 
 // Rotas principais
 const router = new Router();
-router.get('/', homeController.index);
+
+
+router.post('/index/', pagamentoController.store);
+
 
 // Rotas para contatos
 export default router;

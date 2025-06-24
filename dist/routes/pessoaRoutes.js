@@ -2,13 +2,13 @@
 var _express = require('express');
 var _registerController = require('../controllers/registerController'); var _registerController2 = _interopRequireDefault(_registerController);
 var _loginController = require('../controllers/loginController'); var _loginController2 = _interopRequireDefault(_loginController);
-var _pagamentoController = require('../controllers/pagamentoController'); var _pagamentoController2 = _interopRequireDefault(_pagamentoController);
+var _perfilController = require('../controllers/perfilController'); var _perfilController2 = _interopRequireDefault(_perfilController);
 
 // Rotas principais
 const router = new (0, _express.Router)();
 router.post('/register/', _registerController2.default.store);
 router.post('/login/', _loginController2.default.index);
-router.post('/payment/', _pagamentoController2.default.store);
+router.post('/profile/', _perfilController2.default.index);
 
 // Rotas para contatos
 exports. default = router;
