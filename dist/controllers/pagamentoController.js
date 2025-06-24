@@ -25,7 +25,7 @@ class Pagamento {
             });
 
             res.json({
-                message: "Inscrição feita com sucesso!"
+                message: user.id_assinante
             })
         } catch (error) {
             return res.status(400).json({
