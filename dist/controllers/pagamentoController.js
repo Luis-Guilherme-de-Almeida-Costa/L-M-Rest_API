@@ -5,6 +5,28 @@ class Pagamento {
     async store(req, res) {
         try {
             
+            const response = await _pessoas2.default.findOne({
+                where: { email: req.body.email }
+            });            
+            
+            const userAlreadyExists = await _assinante2.default.findOne({
+                where: { id_pessoa: response.id_pessoa }
+            })
+
+            if(userAlreadyExists) {
+                return res.status(400).json({
+                    errors: "Já é um assinante!"
+                });
+            }
+
+            const user = await _assinante2.default.create({
+                id_pessoa: response.id_pessoa,
+                pagamento: 'A'
+            });
+
+            res.json({
+                message: "Inscrição feita com sucesso!"
+            })
         } catch (error) {
             return res.status(400).json({
                 errors: error.errors.map((err) => err.message) 

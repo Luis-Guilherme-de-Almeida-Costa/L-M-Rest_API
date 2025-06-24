@@ -41,7 +41,9 @@ export default class Pessoas extends Model {
         },
         cpf: {
           type: Sequelize.STRING(15),
-          unique: "cpf",
+          unique: {
+            msg: "O cpf já foi registrado!"
+          },
           validate: {
             len: {
               args: [11, 11],

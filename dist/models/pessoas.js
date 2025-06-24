@@ -41,7 +41,9 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
         },
         cpf: {
           type: _sequelize2.default.STRING(15),
-          unique: "cpf",
+          unique: {
+            msg: "O cpf já foi registrado!"
+          },
           validate: {
             len: {
               args: [11, 11],

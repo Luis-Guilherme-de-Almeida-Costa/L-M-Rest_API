@@ -10,7 +10,6 @@ _dotenv2.default.config();
 // eslint-disable-next-line import/extensions
 var _homeRoutes = require('./routes/homeRoutes'); var _homeRoutes2 = _interopRequireDefault(_homeRoutes);
 var _pessoaRoutes = require('./routes/pessoaRoutes'); var _pessoaRoutes2 = _interopRequireDefault(_pessoaRoutes);
-var _tokenRoutes = require('./routes/tokenRoutes'); var _tokenRoutes2 = _interopRequireDefault(_tokenRoutes);
 require('./database/index');
 
 const whiteList = ['http://192.168.1.13:80', 'http://localhost:3002', 'http://localhost:3000'];

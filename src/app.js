@@ -10,7 +10,6 @@ dotenv.config();
 // eslint-disable-next-line import/extensions
 import homeRoutes from './routes/homeRoutes';
 import pessoaRoutes from './routes/pessoaRoutes'
-import tokenRoutes from './routes/tokenRoutes';
 import './database/index';
 
 const whiteList = ['http://192.168.1.13:80', 'http://localhost:3002', 'http://localhost:3000'];
