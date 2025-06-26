@@ -9,7 +9,7 @@ const router = new (0, _express.Router)();
 router.post('/register/', _registerController2.default.store);
 router.post('/login/', _loginController2.default.index);
 router.post('/profile/', _perfilController2.default.index);
-router.put('/profile/', _perfilController2.default.update);
+router.put('/profile/update', _perfilController2.default.update);
 
 // Rotas para contatos
 exports. default = router;

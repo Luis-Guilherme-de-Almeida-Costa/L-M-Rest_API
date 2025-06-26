@@ -22,9 +22,7 @@ class PerfilController {
 
     async update(req, res) {
         try {
-            const pessoa = await _pessoas2.default.findOne({
-                where: { id_pessoa: req.body.id }
-            });
+            const pessoa = await _pessoas2.default.findByPk(req.body.id_pessoa);
 
             if(!pessoa) {
                 return res.status(400).json({
@@ -44,7 +42,7 @@ class PerfilController {
             })
         } catch (error) {
             return res.status(400).json({
-                errors: error.errors
+                errors: error.errors.map((err) => err.message) 
             })
         }
     }

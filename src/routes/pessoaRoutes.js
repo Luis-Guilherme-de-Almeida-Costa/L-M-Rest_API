@@ -9,7 +9,7 @@ const router = new Router();
 router.post('/register/', registerController.store);
 router.post('/login/', loginController.index);
 router.post('/profile/', perfilController.index);
-router.put('/profile/', perfilController.update);
+router.put('/profile/update', perfilController.update);
 
 // Rotas para contatos
 export default router;
