@@ -7,6 +7,12 @@ class PerfilController {
                 where: { email: req.body.email }
             });
             
+            if(!pessoa) {
+                return res.status(400).json({
+                    errors: "E-mail não encontrado!"
+                })
+            }
+
             res.json({
                 id_pessoa: pessoa.id_pessoa,
                 nome: pessoa.nome, 

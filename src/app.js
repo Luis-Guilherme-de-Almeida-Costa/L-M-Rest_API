@@ -11,6 +11,7 @@ dotenv.config();
 import homeRoutes from './routes/homeRoutes';
 import pessoaRoutes from './routes/pessoaRoutes';
 import paymentRoutes from './routes/paymentRoutes';
+import tokenRoutes from './routes/tokenRoutes'
 import './database/index';
 
 const whiteList = ['http://192.168.1.13:80', 'http://localhost:3002', 'http://localhost:3000'];
@@ -44,6 +45,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/auth/', pessoaRoutes);
     this.app.use('/payment/', paymentRoutes);
+    this.app.use('/token/', tokenRoutes);
   }
 }
 

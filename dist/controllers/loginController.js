@@ -1,6 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _jsonwebtoken = require('jsonwebtoken'); var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
-
-var _pessoas = require('../models/pessoas'); var _pessoas2 = _interopRequireDefault(_pessoas);
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _pessoas = require('../models/pessoas'); var _pessoas2 = _interopRequireDefault(_pessoas);
 
 class Login {
     async index(req, res) {
@@ -33,13 +31,10 @@ class Login {
             
             const { id_pessoa } = pessoa;
 
-            const token = _jsonwebtoken2.default.sign({ id_pessoa, email }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION });
-            
             return res.json({
                 message: "Autênticação feita com sucesso!",
                 email: email,
                 user: pessoa.nome,
-                token
             });
 
         } catch (error) {

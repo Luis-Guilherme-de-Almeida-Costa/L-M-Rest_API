@@ -18,8 +18,8 @@ export default class Pessoas extends Model {
           },
           validate: {
             len: {
-              args: [3, 55],
-              msg: "Campo nome deve ter entre 3 e 55 caracteres!",
+              args: [3, 10],
+              msg: "Campo nome deve ter entre 3 e 10 caracteres!",
             }
           }
         },

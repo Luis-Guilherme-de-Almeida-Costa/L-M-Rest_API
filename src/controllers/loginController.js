@@ -1,5 +1,3 @@
-import jwt from 'jsonwebtoken';
-
 import Pessoas from "../models/pessoas";
 
 class Login {
@@ -33,13 +31,10 @@ class Login {
             
             const { id_pessoa } = pessoa;
 
-            const token = jwt.sign({ id_pessoa, email }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION });
-            
             return res.json({
                 message: "Autênticação feita com sucesso!",
                 email: email,
                 user: pessoa.nome,
-                token
             });
 
         } catch (error) {

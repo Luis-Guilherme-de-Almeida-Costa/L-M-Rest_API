@@ -11,6 +11,7 @@ _dotenv2.default.config();
 var _homeRoutes = require('./routes/homeRoutes'); var _homeRoutes2 = _interopRequireDefault(_homeRoutes);
 var _pessoaRoutes = require('./routes/pessoaRoutes'); var _pessoaRoutes2 = _interopRequireDefault(_pessoaRoutes);
 var _paymentRoutes = require('./routes/paymentRoutes'); var _paymentRoutes2 = _interopRequireDefault(_paymentRoutes);
+var _tokenRoutes = require('./routes/tokenRoutes'); var _tokenRoutes2 = _interopRequireDefault(_tokenRoutes);
 require('./database/index');
 
 const whiteList = ['http://192.168.1.13:80', 'http://localhost:3002', 'http://localhost:3000'];
@@ -44,6 +45,7 @@ class App {
     this.app.use('/', _homeRoutes2.default);
     this.app.use('/auth/', _pessoaRoutes2.default);
     this.app.use('/payment/', _paymentRoutes2.default);
+    this.app.use('/token/', _tokenRoutes2.default);
   }
 }
 

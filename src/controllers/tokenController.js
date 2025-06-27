@@ -1,35 +1,31 @@
 import jwt from 'jsonwebtoken';
 
-import User from '../models/User';
+import Pessoas from '../models/pessoas';
 
 class Token {
   async index(req, res) {
-    const { email = '', password = ''} = req.body;
+    const { email } = req.body;
 
-    if(!email || !password) {
+    if(!email) {
       return res.status(401).json({
-        errors: ['Ou seu email, ou sua senha está vazia.']
+        errors: ['Seu email está vazio.']
       })
     }
 
-    const user = await User.findOne({ where: { email } })
+    try {
+      const pessoa = await Pessoas.findOne({
+        where: { email }
+      });
 
-    if(!user) {
+      const token = jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION });
+      return res.json({ token });
+      
+    } catch (error) {
       return res.status(400).json({
-        errors: ['Usuário não existe']
-      })
+        errors: error.errors.map((err) => err.message) 
+      });
     }
 
-    if(!(await user.isValidPassword(password))) {
-      return res.status(400).json({
-        errors: ['Senha inválida.']
-      })
-    }
-
-    const { id } = user;
-
-    const token = jwt.sign({ id, email }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION });
-    return res.json({ token, user: { nome: user.nome, id, email } });
   }
 }
 
