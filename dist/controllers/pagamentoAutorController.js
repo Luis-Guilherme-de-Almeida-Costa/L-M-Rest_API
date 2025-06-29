@@ -1,7 +1,8 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _pessoas = require('../models/pessoas'); var _pessoas2 = _interopRequireDefault(_pessoas);
-var _assinante = require('../models/assinante'); var _assinante2 = _interopRequireDefault(_assinante);
+var _autor = require('../models/autor'); var _autor2 = _interopRequireDefault(_autor);
 
-class Pagamento {
+class PagamentoAutor {
+
     async index(req, res) {
         const { email } = req.body
 
@@ -10,18 +11,18 @@ class Pagamento {
                     where: { email }
             });
     
-            const userAlreadyExists = await _assinante2.default.findOne({
+            const userAlreadyExists = await _autor2.default.findOne({
                 where: { id_pessoa: response.id_pessoa }
             });
     
             if(!userAlreadyExists) {
                 return res.json({
-                    errors: "Não é um assinante!"
+                    errors: "Não é um autor!"
                 });
             };
 
             return res.json({
-                message: "Já é um assinante"
+                message: "Já é um autor"
             })
         } catch (error) {
             return res.status(400).json({
@@ -30,7 +31,6 @@ class Pagamento {
         }
     }
 
-
     async store(req, res) {
         try {
             const { email } = req.body
@@ -38,23 +38,23 @@ class Pagamento {
                 where: { email }
             });            
             
-            const userAlreadyExists = await _assinante2.default.findOne({
+            const userAlreadyExists = await _autor2.default.findOne({
                 where: { id_pessoa: response.id_pessoa }
             });
 
             if(userAlreadyExists) {
                 return res.status(400).json({
-                    errors: "Já é um assinante!"
+                    errors: "Já é um autor!"
                 });
             };
 
-            const user = await _assinante2.default.create({
+            const user = await _autor2.default.create({
                 id_pessoa: response.id_pessoa,
                 pagamento: 'A'
             });
 
             res.json({
-                message: user.id_assinante
+                message: user.id_autor
             });
         } catch (error) {
             return res.status(400).json({
@@ -64,4 +64,4 @@ class Pagamento {
     }
 }
 
-exports. default = new Pagamento();
+exports. default = new PagamentoAutor();

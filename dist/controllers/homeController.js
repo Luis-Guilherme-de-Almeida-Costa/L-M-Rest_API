@@ -1,23 +1,20 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _pessoas = require('../models/pessoas'); var _pessoas2 = _interopRequireDefault(_pessoas);
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _livros = require('../models/livros'); var _livros2 = _interopRequireDefault(_livros);
 
-class HomeController {
+class Home {
     async index(req, res) {
-
         try {
-            const pessoa = await _pessoas2.default.findOne({
-                where: { email: req.body.email }
+            const pessoa = await _livros2.default.findAll();            
+            return res.json({
+                pessoa
             });
-            res.json({
-                    nome: pessoa.nome, 
-                    cpf: pessoa.cpf,
-                    email: pessoa.email 
-                }); 
+
         } catch (error) {
             return res.status(400).json({
-                errors: error.errors.map((err) => err.message) 
+                errors: error
             })
         }
+
     }
 }
 
-exports. default = new HomeController();
+exports. default = new Home();

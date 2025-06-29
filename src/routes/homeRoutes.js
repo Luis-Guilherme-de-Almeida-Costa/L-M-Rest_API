@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import { Router } from 'express';
-import homeController from '../controllers/perfilController';
+import homeController from '../controllers/homeController';
 
 // Rotas principais
 const router = new Router();
