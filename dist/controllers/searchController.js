@@ -2,7 +2,7 @@
 var _sequelize = require('sequelize');
 class SearchController {
     async index(req, res) {
-        const termo = req.body.searchData
+        const termo = req.body.search
         try {
             const livro = await _livros2.default.findAll({
                 where: {
