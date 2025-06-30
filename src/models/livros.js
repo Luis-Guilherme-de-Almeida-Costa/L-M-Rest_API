@@ -27,11 +27,11 @@ export default class Livros extends Model {
           allowNull: true
         },
         livro_file: {
-          type: Sequelize.BLOB,
+          type: Sequelize.BLOB('long'),
           allowNull: true
         },
         capa_img: {
-          type: Sequelize.BLOB,
+          type: Sequelize.BLOB('long'),
           allowNull: true
         },
         situacao: {

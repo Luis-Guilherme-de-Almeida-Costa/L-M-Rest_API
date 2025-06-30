@@ -3,9 +3,11 @@
 class Home {
     async index(req, res) {
         try {
-            const pessoa = await _livros2.default.findAll();            
+            const livros = await _livros2.default.findAll({
+                attributes: ['id_livro', 'titulo', 'categoria', 'visualizacao', 'autor', 'situacao']
+            });            
             return res.json({
-                pessoa
+                livros
             });
 
         } catch (error) {

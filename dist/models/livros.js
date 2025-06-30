@@ -27,11 +27,11 @@
           allowNull: true
         },
         livro_file: {
-          type: _sequelize2.default.BLOB,
+          type: _sequelize2.default.BLOB('long'),
           allowNull: true
         },
         capa_img: {
-          type: _sequelize2.default.BLOB,
+          type: _sequelize2.default.BLOB('long'),
           allowNull: true
         },
         situacao: {

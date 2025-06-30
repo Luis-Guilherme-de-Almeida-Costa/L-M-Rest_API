@@ -3,11 +3,11 @@ import Livros from "../models/livros";
 class Home {
     async index(req, res) {
         try {
-            const livros = await Livro.findAll({
+            const livros = await Livros.findAll({
                 attributes: ['id_livro', 'titulo', 'categoria', 'visualizacao', 'autor', 'situacao']
             });            
             return res.json({
-                pessoa
+                livros
             });
 
         } catch (error) {

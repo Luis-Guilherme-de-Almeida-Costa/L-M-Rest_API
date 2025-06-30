@@ -1,32 +1,30 @@
-import Livros from "../models/pessoas";
-
+import Livros from "../models/livros";
+import { Op } from "sequelize"
 class SearchController {
     async index(req, res) {
-        const termo = req.body.searchData
+        const termo = req.body.search
         try {
-            const livros = await Livros.findAll({
+            const livro = await Livros.findAll({
                 where: {
                     titulo: {
                         [Op.like]: `%${termo}%`
                     }
-                }
+                },
+                attributes: ['id_livro', 'titulo', 'visualizacao', 'categoria', 'situacao', 'autor']
             });
-            
-            if(!pessoa) {
+
+            if(!livro) {
                 return res.status(400).json({
-                    errors: "E-mail não encontrado!"
+                    errors: "Livro não encontrado!"
                 })
             }
 
             res.json({
-                id_pessoa: pessoa.id_pessoa,
-                nome: pessoa.nome, 
-                cpf: pessoa.cpf,
-                email: pessoa.email 
+                livro   
             }); 
         } catch (error) {
             return res.status(400).json({
-                errors: error.errors.map((err) => err.message) 
+                errors: "livro nao encontrado"
             })
         }
     }

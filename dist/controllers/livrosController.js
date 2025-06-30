@@ -1,9 +1,9 @@
-import Livro from "../models/livros";
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _livros = require('../models/livros'); var _livros2 = _interopRequireDefault(_livros);
 
 class Livros {
     async index(req, res) {
         try {
-            const livros = await Livro.findByPk(req.params.id, {
+            const livros = await _livros2.default.findByPk(req.params.id, {
                 atributes: ['capa_img']
             });   
 
@@ -19,4 +19,4 @@ class Livros {
     }
 }
 
-export default new Livros();
+exports. default = new Livros();
