@@ -37,6 +37,10 @@ export default class Livros extends Model {
         situacao: {
           type: Sequelize.STRING(15),
           allowNull: true
+        },
+        descricao: {
+          type: Sequelize.BLOB('long'),
+          allowNull: true 
         }
       },
       {

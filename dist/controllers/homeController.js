@@ -17,6 +17,28 @@ class Home {
         }
 
     }
+
+    async acao(req, res) {
+        try {
+            const livros = await _livros2.default.findAll({
+                where: {
+                    categoria: "acao"
+                },
+
+                attributes: ['id_livro', 'titulo', 'categoria', 'visualizacao', 'autor', 'situacao']
+            });            
+            
+            return res.json({
+                livros
+            });
+
+        } catch (error) {
+            return res.status(400).json({
+                errors: error.errors.map((err) => err.message)
+            })
+        }
+
+    }
 }
 
 exports. default = new Home();

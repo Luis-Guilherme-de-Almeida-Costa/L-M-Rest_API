@@ -6,6 +6,7 @@ import livrosController from '../controllers/livrosController';
 // Rotas principais
 const router = new Router();
 router.get('/', homeController.index);
+router.get('/acao', homeController.acao);
 router.post('/search', searchController.index);
 router.get('/livros/:id/capa', livrosController.index);
 

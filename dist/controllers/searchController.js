@@ -10,7 +10,7 @@ class SearchController {
                         [_sequelize.Op.like]: `%${termo}%`
                     }
                 },
-                attributes: ['id_livro', 'titulo', 'visualizacao', 'categoria', 'situacao', 'autor']
+                attributes: ['id_livro', 'titulo', 'visualizacao', 'descricao', 'categoria', 'situacao', 'autor']
             });
 
             if(!livro) {
@@ -19,8 +19,16 @@ class SearchController {
                 })
             }
 
+            const livrosConvertidos = livro.map(livros => {
+                const blob = livros.descricao;
+                return {
+                    ...livros.toJSON(),
+                    descricao: blob ? blob.toString('utf8') : ''
+                };
+            });
+
             res.json({
-                livro   
+                livros: livrosConvertidos   
             }); 
         } catch (error) {
             return res.status(400).json({

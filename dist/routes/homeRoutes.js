@@ -6,6 +6,7 @@ var _livrosController = require('../controllers/livrosController'); var _livrosC
 // Rotas principais
 const router = new (0, _express.Router)();
 router.get('/', _homeController2.default.index);
+router.get('/acao', _homeController2.default.acao);
 router.post('/search', _searchController2.default.index);
 router.get('/livros/:id/capa', _livrosController2.default.index);
 
