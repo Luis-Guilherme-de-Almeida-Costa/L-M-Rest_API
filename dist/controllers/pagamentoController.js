@@ -25,7 +25,7 @@ class Pagamento {
             })
         } catch (error) {
             return res.status(400).json({
-                errors: error
+                errors: error.errors.map((err) => err.message)
             });
         }
     }

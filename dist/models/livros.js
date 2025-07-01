@@ -37,6 +37,10 @@
         situacao: {
           type: _sequelize2.default.STRING(15),
           allowNull: true
+        },
+        descricao: {
+          type: _sequelize2.default.BLOB('long'),
+          allowNull: true 
         }
       },
       {
