@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _livros = require('../models/livros'); var _livros2 = _interopRequireDefault(_livros);
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }var _livros = require('../models/livros'); var _livros2 = _interopRequireDefault(_livros);
 var _pessoas = require('../models/pessoas'); var _pessoas2 = _interopRequireDefault(_pessoas);
 var _livros_favoritos = require('../models/livros_favoritos'); var _livros_favoritos2 = _interopRequireDefault(_livros_favoritos);
 
@@ -40,6 +40,13 @@ class Leitura {
 
     async store(req, res) {
         const { id, email } = req.body
+
+         if (!id || !email) {
+            return res.status(400).json({
+                errors: ["ID do livro e e-mail são obrigatórios."]
+            });
+        }   
+        
         try {
             const pessoa = await _pessoas2.default.findOne({
                 where: { email }
@@ -81,7 +88,7 @@ class Leitura {
             }); 
         } catch (error) {
             return res.status(400).json({
-                errors: error
+                errors: _optionalChain([error, 'access', _ => _.errors, 'optionalAccess', _2 => _2.map, 'call', _3 => _3(err => err.message)]) || [error.message || "Erro interno."]
             })
         }
     }

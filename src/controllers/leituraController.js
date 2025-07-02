@@ -40,6 +40,13 @@ class Leitura {
 
     async store(req, res) {
         const { id, email } = req.body
+
+         if (!id || !email) {
+            return res.status(400).json({
+                errors: ["ID do livro e e-mail são obrigatórios."]
+            });
+        }   
+        
         try {
             const pessoa = await Pessoas.findOne({
                 where: { email }
@@ -81,7 +88,7 @@ class Leitura {
             }); 
         } catch (error) {
             return res.status(400).json({
-                errors: error
+                errors: error.errors?.map(err => err.message) || [error.message || "Erro interno."]
             })
         }
     }

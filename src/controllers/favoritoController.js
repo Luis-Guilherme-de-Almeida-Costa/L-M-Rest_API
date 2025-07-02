@@ -4,7 +4,7 @@ import Pessoas from "../models/pessoas";
 
 class Favorito {
     async index(req, res) {
-        const { email, id } = req.body
+        const { email } = req.body
         try {
             const pessoa = await Pessoas.findOne({
                 where: { email }
@@ -22,14 +22,7 @@ class Favorito {
                 },
 
                 attributes: ['id_livro']
-            })
-
-            //const livros = await Livros.findAll({
-            //    where: {
-//
-            //    },
-            //    attributes: ['id_livro', 'titulo', 'categoria', 'visualizacao', 'autor', 'situacao']
-            //});      
+            })      
 
             return res.json({
                 favoritos
