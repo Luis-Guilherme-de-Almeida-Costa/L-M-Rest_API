@@ -4,7 +4,7 @@
   static init(sequelize) {
     super.init(
       {
-        id_livro_favorito: {
+        id_livros_favoritos: {
           autoIncrement: true,
           type: _sequelize2.default.INTEGER,
           allowNull: false,

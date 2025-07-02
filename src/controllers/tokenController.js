@@ -7,7 +7,7 @@ class Token {
     const { email } = req.body;
 
     if(!email) {
-      return res.status(401).json({
+      return res.status(400).json({
         errors: ['Seu email está vazio.']
       })
     }

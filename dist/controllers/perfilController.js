@@ -13,6 +13,26 @@ class PerfilController {
                 })
             }
 
+            const pessoaExiste = await _pessoas2.default.findOne({
+                where: { email }
+            }); 
+
+            if (pessoaExiste) {
+                return res.status(400).json({
+                    errors: "Email já utilizado!"
+                })
+            }
+
+            const cpfExiste = await _pessoas2.default.findOne({
+                where: { cpf }
+            }); 
+
+            if(cpfExiste) {
+                return res.status(400).json({
+                    errors: "CPF já utilizado!"
+                })
+            }
+
             res.json({
                 id_pessoa: pessoa.id_pessoa,
                 nome: pessoa.nome, 

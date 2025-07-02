@@ -2,12 +2,33 @@ import Pessoas from "../models/pessoas";
 
 class Register {
     async store(req, res) {
+        const { nome, email, cpf, senha } = req.body
         try {
+            const pessoaExiste = await Pessoas.findOne({
+                where: { email }
+            }); 
+
+            if (pessoaExiste) {
+                return res.status(400).json({
+                    errors: "Email já utilizado!"
+                })
+            }
+
+            const cpfExiste = await Pessoas.findOne({
+                where: { cpf }
+            }); 
+
+            if(cpfExiste) {
+                return res.status(400).json({
+                    errors: "CPF já utilizado!"
+                })
+            }
+
             const pessoa = await Pessoas.create({
-                nome: req.body.nome,
-                email: req.body.email,
-                cpf: req.body.cpf,
-                senha: req.body.senha
+                nome,
+                email,
+                cpf,
+                senha
             });
 
             res.json({

@@ -4,7 +4,7 @@ export default class LivrosFavoritos extends Model {
   static init(sequelize) {
     super.init(
       {
-        id_livro_favorito: {
+        id_livros_favoritos: {
           autoIncrement: true,
           type: Sequelize.INTEGER,
           allowNull: false,

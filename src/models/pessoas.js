@@ -13,9 +13,6 @@ export default class Pessoas extends Model {
         nome: {
           type: Sequelize.STRING(55),
           allowNull: false,
-          unique: {
-            msg: "Nome de perfil já foi utilizado."
-          },
           validate: {
             len: {
               args: [3, 10],
@@ -48,8 +45,13 @@ export default class Pessoas extends Model {
             len: {
               args: [11, 11],
               msg: "O cpf deve possuir 11 caracteres!"
+            },
+
+            is: {
+              args: /^[0-9]+$/i,
+              msg: "O CPF deve conter apenas números!"
             }
-          }
+          },
         },
         situacao: {
           type: Sequelize.CHAR(2),

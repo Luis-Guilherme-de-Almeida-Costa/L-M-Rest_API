@@ -13,9 +13,6 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
         nome: {
           type: _sequelize2.default.STRING(55),
           allowNull: false,
-          unique: {
-            msg: "Nome de perfil já foi utilizado."
-          },
           validate: {
             len: {
               args: [3, 10],
@@ -48,8 +45,13 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
             len: {
               args: [11, 11],
               msg: "O cpf deve possuir 11 caracteres!"
+            },
+
+            is: {
+              args: /^[0-9]+$/i,
+              msg: "O CPF deve conter apenas números!"
             }
-          }
+          },
         },
         situacao: {
           type: _sequelize2.default.CHAR(2),
